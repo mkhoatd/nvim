@@ -1,0 +1,2 @@
+require("mkhoatd")
+print("hello")
