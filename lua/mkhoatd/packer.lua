@@ -1,15 +1,19 @@
 local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd [[packadd packer.nvim]]
-    return true
-  end
-  return false
+    local fn = vim.fn
+    local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+    if fn.empty(fn.glob(install_path)) > 0 then
+        fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+        vim.cmd [[packadd packer.nvim]]
+        return true
+    end
+    return false
 end
 
 local packer_bootstrap = ensure_packer()
+
+local function check_os()
+    return package.config:sub(1,1) == "\\" and "win" or "unix"
+end
 
 
 vim.cmd [[packadd packer.nvim]]
@@ -35,7 +39,25 @@ return require('packer').startup(function(use)
 	use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
 	use('nvim-treesitter/playground')
 	use('theprimeagen/harpoon')
-	use('mbbill/undotree')
+	use {
+        'mbbill/undotree',
+        config = function ()
+            local undodir = os.getenv("HOME") .. "/.vim/undodir"
+            local fn = vim.fn
+            if fn.empty(fn.glob(undodir)) >0 then
+                    if check_os() == "win" then
+                        local command = "mkdir " .. undodir .. " -force"
+                        local pipe = io.popen("powershell -command -", "w")
+                        pipe:write(command)
+                        pipe.close()
+                    else
+                        local command = "mkdir -p " ..undodir
+                        os.execute(command)
+                    end
+            end
+            vim.opt.undodir = undodir
+        end
+    }
 	use('tpope/vim-fugitive')
 	use {
 		'numToStr/Comment.nvim',
