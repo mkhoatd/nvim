@@ -43,6 +43,64 @@ return require('packer').startup(function(use)
 			require('Comment').setup()
 		end
 	}
+	use{
+		'williamboman/mason.nvim',
+		config = function()
+			require('mason').setup()
+		end
+	}
+	use{
+		'williamboman/mason-lspconfig.nvim',
+		config = function()
+			require("mason-lspconfig").setup {
+				ensure_installed = { 'lua_ls', 'pyright', 'dockerls', 'docker_compose_language_service' , 'jsonls', 'marksman', 'spectral', 'sqlls', 'gopls', 'golangci_lint_ls'},
+				automatic_installation = true,
+			}
+		end
+	}
+	use{
+		'neovim/nvim-lspconfig',
+		config = function()
+			local lspconfig = require('lspconfig')
+			lspconfig.pyright.setup {}
+			lspconfig.dockerls.setup {}
+			lspconfig.docker_compose_language_service.setup{}
+			lspconfig.jsonls.setup {}
+			lspconfig.marksman.setup {}
+			lspconfig.spectral.setup {}
+			lspconfig.sqlls.setup {}
+			lspconfig.gopls.setup {}
+			lspconfig.golangci_lint_ls.setup {}
+		end
+	}
+	use('hrsh7th/nvim-cmp')
+	use('hrsh7th/cmp-nvim-lsp')
+	use('L3MON4D3/LuaSnip')
+	use{
+		'folke/neodev.nvim',
+		config = function ()
+			require('neodev').setup({
+				library = {
+					enabled = true,
+					runtime = true,
+					types = true,
+					plugins = true
+				},
+
+			})
+			local lspconfig = require('lspconfig')
+			lspconfig.lua_ls.setup({
+				settings = {
+					Lua = {
+						completion = {
+							callSnippet = "Replace"
+						}
+					}
+				}
+			})
+		end
+
+	}
 
 	if packer_bootstrap then
 		require('packer').sync()

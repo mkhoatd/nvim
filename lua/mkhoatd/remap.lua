@@ -1,3 +1,3 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
-vim.keymap.set("v", "<C-_>", "gb")
+local map = vim.keymap
+map.set("n", "<leader>pv", vim.cmd.Ex)

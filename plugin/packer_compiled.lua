@@ -80,10 +80,49 @@ _G.packer_plugins = {
     path = "/home/mkhoatd/.local/share/nvim/site/pack/packer/start/Comment.nvim",
     url = "https://github.com/numToStr/Comment.nvim"
   },
+  LuaSnip = {
+    loaded = true,
+    path = "/home/mkhoatd/.local/share/nvim/site/pack/packer/start/LuaSnip",
+    url = "https://github.com/L3MON4D3/LuaSnip"
+  },
+  ["cmp-nvim-lsp"] = {
+    loaded = true,
+    path = "/home/mkhoatd/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
+    url = "https://github.com/hrsh7th/cmp-nvim-lsp"
+  },
   harpoon = {
     loaded = true,
     path = "/home/mkhoatd/.local/share/nvim/site/pack/packer/start/harpoon",
     url = "https://github.com/theprimeagen/harpoon"
+  },
+  ["mason-lspconfig.nvim"] = {
+    config = { "\27LJ\2\2ç\1\0\0\3\0\6\0\t6\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\4\0005\2\3\0=\2\5\1B\0\2\1K\0\1\0\21ensure_installed\1\0\1\27automatic_installation\2\1\v\0\0\vlua_ls\fpyright\rdockerls$docker_compose_language_service\vjsonls\rmarksman\rspectral\nsqlls\ngopls\21golangci_lint_ls\nsetup\20mason-lspconfig\frequire\0" },
+    loaded = true,
+    path = "/home/mkhoatd/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
+    url = "https://github.com/williamboman/mason-lspconfig.nvim"
+  },
+  ["mason.nvim"] = {
+    config = { "\27LJ\2\0023\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\nmason\frequire\0" },
+    loaded = true,
+    path = "/home/mkhoatd/.local/share/nvim/site/pack/packer/start/mason.nvim",
+    url = "https://github.com/williamboman/mason.nvim"
+  },
+  ["neodev.nvim"] = {
+    config = { "\27LJ\2\2í\1\0\0\6\0\15\0\0226\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\4\0005\2\3\0=\2\5\1B\0\2\0016\0\0\0'\1\6\0B\0\2\0029\1\a\0009\1\2\0015\2\r\0005\3\v\0005\4\t\0005\5\b\0=\5\n\4=\4\f\3=\3\14\2B\1\2\1K\0\1\0\rsettings\1\0\0\bLua\1\0\0\15completion\1\0\0\1\0\1\16callSnippet\fReplace\vlua_ls\14lspconfig\flibrary\1\0\0\1\0\4\fplugins\2\ntypes\2\fruntime\2\fenabled\2\nsetup\vneodev\frequire\0" },
+    loaded = true,
+    path = "/home/mkhoatd/.local/share/nvim/site/pack/packer/start/neodev.nvim",
+    url = "https://github.com/folke/neodev.nvim"
+  },
+  ["nvim-cmp"] = {
+    loaded = true,
+    path = "/home/mkhoatd/.local/share/nvim/site/pack/packer/start/nvim-cmp",
+    url = "https://github.com/hrsh7th/nvim-cmp"
+  },
+  ["nvim-lspconfig"] = {
+    config = { "\27LJ\2\2½\2\0\0\3\0\r\0,6\0\0\0'\1\1\0B\0\2\0029\1\2\0009\1\3\0014\2\0\0B\1\2\0019\1\4\0009\1\3\0014\2\0\0B\1\2\0019\1\5\0009\1\3\0014\2\0\0B\1\2\0019\1\6\0009\1\3\0014\2\0\0B\1\2\0019\1\a\0009\1\3\0014\2\0\0B\1\2\0019\1\b\0009\1\3\0014\2\0\0B\1\2\0019\1\t\0009\1\3\0014\2\0\0B\1\2\0019\1\n\0009\1\3\0014\2\0\0B\1\2\0019\1\v\0009\1\3\0014\2\0\0B\1\2\0019\1\f\0009\1\3\0014\2\0\0B\1\2\1K\0\1\0\21golangci_lint_ls\ngopls\nsqlls\rspectral\rmarksman\vjsonls$docker_compose_language_service\rdockerls\fpyright\nsetup\vlua_ls\14lspconfig\frequire\0" },
+    loaded = true,
+    path = "/home/mkhoatd/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
+    url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-treesitter"] = {
     loaded = true,
@@ -129,14 +168,30 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: Comment.nvim
-time([[Config for Comment.nvim]], true)
-try_loadstring("\27LJ\2\0025\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
-time([[Config for Comment.nvim]], false)
+-- Config for: mason.nvim
+time([[Config for mason.nvim]], true)
+try_loadstring("\27LJ\2\0023\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\nmason\frequire\0", "config", "mason.nvim")
+time([[Config for mason.nvim]], false)
+-- Config for: nvim-lspconfig
+time([[Config for nvim-lspconfig]], true)
+try_loadstring("\27LJ\2\2½\2\0\0\3\0\r\0,6\0\0\0'\1\1\0B\0\2\0029\1\2\0009\1\3\0014\2\0\0B\1\2\0019\1\4\0009\1\3\0014\2\0\0B\1\2\0019\1\5\0009\1\3\0014\2\0\0B\1\2\0019\1\6\0009\1\3\0014\2\0\0B\1\2\0019\1\a\0009\1\3\0014\2\0\0B\1\2\0019\1\b\0009\1\3\0014\2\0\0B\1\2\0019\1\t\0009\1\3\0014\2\0\0B\1\2\0019\1\n\0009\1\3\0014\2\0\0B\1\2\0019\1\v\0009\1\3\0014\2\0\0B\1\2\0019\1\f\0009\1\3\0014\2\0\0B\1\2\1K\0\1\0\21golangci_lint_ls\ngopls\nsqlls\rspectral\rmarksman\vjsonls$docker_compose_language_service\rdockerls\fpyright\nsetup\vlua_ls\14lspconfig\frequire\0", "config", "nvim-lspconfig")
+time([[Config for nvim-lspconfig]], false)
 -- Config for: rose-pine
 time([[Config for rose-pine]], true)
 try_loadstring("\27LJ\2\0029\0\0\2\0\3\0\0056\0\0\0009\0\1\0'\1\2\0B\0\2\1K\0\1\0\26colorscheme rose-pine\bcmd\bvim\0", "config", "rose-pine")
 time([[Config for rose-pine]], false)
+-- Config for: mason-lspconfig.nvim
+time([[Config for mason-lspconfig.nvim]], true)
+try_loadstring("\27LJ\2\2ç\1\0\0\3\0\6\0\t6\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\4\0005\2\3\0=\2\5\1B\0\2\1K\0\1\0\21ensure_installed\1\0\1\27automatic_installation\2\1\v\0\0\vlua_ls\fpyright\rdockerls$docker_compose_language_service\vjsonls\rmarksman\rspectral\nsqlls\ngopls\21golangci_lint_ls\nsetup\20mason-lspconfig\frequire\0", "config", "mason-lspconfig.nvim")
+time([[Config for mason-lspconfig.nvim]], false)
+-- Config for: Comment.nvim
+time([[Config for Comment.nvim]], true)
+try_loadstring("\27LJ\2\0025\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
+time([[Config for Comment.nvim]], false)
+-- Config for: neodev.nvim
+time([[Config for neodev.nvim]], true)
+try_loadstring("\27LJ\2\2í\1\0\0\6\0\15\0\0226\0\0\0'\1\1\0B\0\2\0029\0\2\0005\1\4\0005\2\3\0=\2\5\1B\0\2\0016\0\0\0'\1\6\0B\0\2\0029\1\a\0009\1\2\0015\2\r\0005\3\v\0005\4\t\0005\5\b\0=\5\n\4=\4\f\3=\3\14\2B\1\2\1K\0\1\0\rsettings\1\0\0\bLua\1\0\0\15completion\1\0\0\1\0\1\16callSnippet\fReplace\vlua_ls\14lspconfig\flibrary\1\0\0\1\0\4\fplugins\2\ntypes\2\fruntime\2\fenabled\2\nsetup\vneodev\frequire\0", "config", "neodev.nvim")
+time([[Config for neodev.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
