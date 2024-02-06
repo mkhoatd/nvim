@@ -85,6 +85,12 @@ _G.packer_plugins = {
     path = "/Users/mkhoatd/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["autoclose.nvim"] = {
+    config = { "\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14autoclose\frequire\0" },
+    loaded = true,
+    path = "/Users/mkhoatd/.local/share/nvim/site/pack/packer/start/autoclose.nvim",
+    url = "https://github.com/m4xshen/autoclose.nvim"
+  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/Users/mkhoatd/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
@@ -129,6 +135,11 @@ _G.packer_plugins = {
     path = "/Users/mkhoatd/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
+  ["nvim-web-devicons"] = {
+    loaded = true,
+    path = "/Users/mkhoatd/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    url = "https://github.com/nvim-tree/nvim-web-devicons"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/Users/mkhoatd/.local/share/nvim/site/pack/packer/start/packer.nvim",
@@ -156,6 +167,7 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
   undotree = {
+    config = { "\27LJ\2\nÒ\2\0\0\b\1\21\0/6\0\0\0009\0\1\0'\2\2\0B\0\2\2'\1\3\0&\0\1\0006\1\4\0009\1\5\0019\2\6\0019\4\a\1\18\6\0\0B\4\2\0A\2\0\2)\3\0\0\1\3\2\0X\2\27€-\2\0\0B\2\1\2\a\2\b\0X\2\16€'\2\t\0\18\3\0\0'\4\n\0&\2\4\0026\3\v\0009\3\f\3'\5\r\0'\6\14\0B\3\3\2\18\6\3\0009\4\15\3\18\a\2\0B\4\3\0019\4\16\3B\4\1\1X\2\a€'\2\17\0\18\3\0\0&\2\3\0026\3\0\0009\3\18\3\18\5\2\0B\3\2\0016\2\4\0009\2\19\2=\0\20\2K\0\1\0\0\0\fundodir\bopt\fexecute\14mkdir -p \nclose\nwrite\6w\26powershell -command -\npopen\aio\f -force\vmkdir \bwin\tglob\nempty\afn\bvim\18/.vim/undodir\tHOME\vgetenv\aos\0" },
     loaded = true,
     path = "/Users/mkhoatd/.local/share/nvim/site/pack/packer/start/undotree",
     url = "https://github.com/mbbill/undotree"
@@ -168,6 +180,30 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: autoclose.nvim
+time([[Config for autoclose.nvim]], true)
+try_loadstring("\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14autoclose\frequire\0", "config", "autoclose.nvim")
+time([[Config for autoclose.nvim]], false)
+-- Config for: nvim-lspconfig
+time([[Config for nvim-lspconfig]], true)
+try_loadstring("\27LJ\2\n¦\2\0\0\4\0\f\0(6\0\0\0'\2\1\0B\0\2\0029\1\2\0009\1\3\0014\3\0\0B\1\2\0019\1\4\0009\1\3\0014\3\0\0B\1\2\0019\1\5\0009\1\3\0014\3\0\0B\1\2\0019\1\6\0009\1\3\0014\3\0\0B\1\2\0019\1\a\0009\1\3\0014\3\0\0B\1\2\0019\1\b\0009\1\3\0014\3\0\0B\1\2\0019\1\t\0009\1\3\0014\3\0\0B\1\2\0019\1\n\0009\1\3\0014\3\0\0B\1\2\0019\1\v\0009\1\3\0014\3\0\0B\1\2\1K\0\1\0\21golangci_lint_ls\ngopls\nsqlls\rspectral\rmarksman\vjsonls$docker_compose_language_service\rdockerls\nsetup\fpyright\14lspconfig\frequire\0", "config", "nvim-lspconfig")
+time([[Config for nvim-lspconfig]], false)
+-- Config for: neodev.nvim
+time([[Config for neodev.nvim]], true)
+try_loadstring("\27LJ\2\ní\1\0\0\a\0\15\0\0226\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\0016\0\0\0'\2\6\0B\0\2\0029\1\a\0009\1\2\0015\3\r\0005\4\v\0005\5\t\0005\6\b\0=\6\n\5=\5\f\4=\4\14\3B\1\2\1K\0\1\0\rsettings\1\0\0\bLua\1\0\0\15completion\1\0\0\1\0\1\16callSnippet\fReplace\vlua_ls\14lspconfig\flibrary\1\0\0\1\0\4\fplugins\2\fruntime\2\fenabled\2\ntypes\2\nsetup\vneodev\frequire\0", "config", "neodev.nvim")
+time([[Config for neodev.nvim]], false)
+-- Config for: rose-pine
+time([[Config for rose-pine]], true)
+try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\26colorscheme rose-pine\bcmd\bvim\0", "config", "rose-pine")
+time([[Config for rose-pine]], false)
+-- Config for: undotree
+time([[Config for undotree]], true)
+try_loadstring("\27LJ\2\nÒ\2\0\0\b\1\21\0/6\0\0\0009\0\1\0'\2\2\0B\0\2\2'\1\3\0&\0\1\0006\1\4\0009\1\5\0019\2\6\0019\4\a\1\18\6\0\0B\4\2\0A\2\0\2)\3\0\0\1\3\2\0X\2\27€-\2\0\0B\2\1\2\a\2\b\0X\2\16€'\2\t\0\18\3\0\0'\4\n\0&\2\4\0026\3\v\0009\3\f\3'\5\r\0'\6\14\0B\3\3\2\18\6\3\0009\4\15\3\18\a\2\0B\4\3\0019\4\16\3B\4\1\1X\2\a€'\2\17\0\18\3\0\0&\2\3\0026\3\0\0009\3\18\3\18\5\2\0B\3\2\0016\2\4\0009\2\19\2=\0\20\2K\0\1\0\0\0\fundodir\bopt\fexecute\14mkdir -p \nclose\nwrite\6w\26powershell -command -\npopen\aio\f -force\vmkdir \bwin\tglob\nempty\afn\bvim\18/.vim/undodir\tHOME\vgetenv\aos\0", "config", "undotree")
+time([[Config for undotree]], false)
+-- Config for: Comment.nvim
+time([[Config for Comment.nvim]], true)
+try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
+time([[Config for Comment.nvim]], false)
 -- Config for: mason.nvim
 time([[Config for mason.nvim]], true)
 try_loadstring("\27LJ\2\n3\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\nmason\frequire\0", "config", "mason.nvim")
@@ -176,22 +212,6 @@ time([[Config for mason.nvim]], false)
 time([[Config for mason-lspconfig.nvim]], true)
 try_loadstring("\27LJ\2\nç\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\21ensure_installed\1\0\1\27automatic_installation\2\1\v\0\0\vlua_ls\fpyright\rdockerls$docker_compose_language_service\vjsonls\rmarksman\rspectral\nsqlls\ngopls\21golangci_lint_ls\nsetup\20mason-lspconfig\frequire\0", "config", "mason-lspconfig.nvim")
 time([[Config for mason-lspconfig.nvim]], false)
--- Config for: rose-pine
-time([[Config for rose-pine]], true)
-try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\26colorscheme rose-pine\bcmd\bvim\0", "config", "rose-pine")
-time([[Config for rose-pine]], false)
--- Config for: Comment.nvim
-time([[Config for Comment.nvim]], true)
-try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
-time([[Config for Comment.nvim]], false)
--- Config for: neodev.nvim
-time([[Config for neodev.nvim]], true)
-try_loadstring("\27LJ\2\ní\1\0\0\a\0\15\0\0226\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\0016\0\0\0'\2\6\0B\0\2\0029\1\a\0009\1\2\0015\3\r\0005\4\v\0005\5\t\0005\6\b\0=\6\n\5=\5\f\4=\4\14\3B\1\2\1K\0\1\0\rsettings\1\0\0\bLua\1\0\0\15completion\1\0\0\1\0\1\16callSnippet\fReplace\vlua_ls\14lspconfig\flibrary\1\0\0\1\0\4\fplugins\2\fruntime\2\fenabled\2\ntypes\2\nsetup\vneodev\frequire\0", "config", "neodev.nvim")
-time([[Config for neodev.nvim]], false)
--- Config for: nvim-lspconfig
-time([[Config for nvim-lspconfig]], true)
-try_loadstring("\27LJ\2\n¦\2\0\0\4\0\f\0(6\0\0\0'\2\1\0B\0\2\0029\1\2\0009\1\3\0014\3\0\0B\1\2\0019\1\4\0009\1\3\0014\3\0\0B\1\2\0019\1\5\0009\1\3\0014\3\0\0B\1\2\0019\1\6\0009\1\3\0014\3\0\0B\1\2\0019\1\a\0009\1\3\0014\3\0\0B\1\2\0019\1\b\0009\1\3\0014\3\0\0B\1\2\0019\1\t\0009\1\3\0014\3\0\0B\1\2\0019\1\n\0009\1\3\0014\3\0\0B\1\2\0019\1\v\0009\1\3\0014\3\0\0B\1\2\1K\0\1\0\21golangci_lint_ls\ngopls\nsqlls\rspectral\rmarksman\vjsonls$docker_compose_language_service\rdockerls\nsetup\fpyright\14lspconfig\frequire\0", "config", "nvim-lspconfig")
-time([[Config for nvim-lspconfig]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

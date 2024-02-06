@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 local map = vim.keymap
 
-map.set("n", "<leader>pv", vim.cmd.Ex)
+map.set("n", "<C-b>", vim.cmd.Ex)
 
 map.set("v", "J", ":m '>+1<CR>gv=gv")
 map.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -21,8 +21,11 @@ map.set("n", "<leader>Y", "\"+Y")
 
 map.set("n", "<leader>d", "\"_d")
 map.set("v", "<leader>d", "\"_d")
-map.set("n", "<leader>x", "\"_d")
-map.set("v", "<leader>x", "\"_d")
+map.set("n", "<leader>x", "\"+d")
+map.set("v", "<leader>x", "\"+d")
+
+map.set("n", "<leader>p", "\"+p")
+map.set("v", "<leader>p", "\"+p")
 
 map.set("i", "<C-c>", "<Esc>")
 
