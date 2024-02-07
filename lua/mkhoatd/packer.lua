@@ -11,6 +11,7 @@ end
 
 local packer_bootstrap = ensure_packer()
 
+
 local function check_os()
     return package.config:sub(1, 1) == "\\" and "win" or "unix"
 end
@@ -42,7 +43,14 @@ return require('packer').startup(function(use)
     use {
         'mbbill/undotree',
         config = function()
-            local undodir = os.getenv("HOME") .. "/.vim/undodir"
+            local homedir = ""
+            if check_os() == "win" then
+                homedir = os.getenv("HOMEPATH")
+            else
+                homedir = os.getenv("HOME")
+            end
+
+            local undodir = homedir .. "/.vim/undodir"
             local fn = vim.fn
             if fn.empty(fn.glob(undodir)) > 0 then
                 if check_os() == "win" then
@@ -124,12 +132,12 @@ return require('packer').startup(function(use)
     }
     use {
         'm4xshen/autoclose.nvim',
-        config = function ()
+        config = function()
             require("autoclose").setup()
         end
 
-}
-    use ('nvim-tree/nvim-web-devicons')
+    }
+    use('nvim-tree/nvim-web-devicons')
 
 
     if packer_bootstrap then
