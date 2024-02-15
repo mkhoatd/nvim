@@ -21,13 +21,15 @@ map.set("n", "Y", "\"+Y")
 
 map.set("n", "d", "\"_d")
 map.set("v", "d", "\"_d")
-map.set("n", "x", "\"+d")
-map.set("v", "x", "\"+d")
+map.set("n", "dd", "\"_dd")
+map.set("v", "dd", "\"_dd")
+map.set("n", "x", "\"+x")
+map.set("v", "x", "\"+x")
 
-map.set("n", "<leader>p", "\"+p")
-map.set("v", "<leader>p", "\"+p")
+map.set("n", "p", "\"+p")
+map.set("v", "p", "\"+p")
 
-map.set("i", "<C-c>", "<Esc>")
+map.set("i", "<C-c>", "<Esc>l")
 
 map.set("n", "Q", "<nop>")
 map.set("n", "<leader>f", function()
@@ -40,3 +42,6 @@ map.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 map.set("n", "<C-j>", "<cmd>cprev<CR>zz")
 map.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 map.set("n", "<leader>j", "<cmd>lnext<CR>zz")
+
+map.set("n", "<C-p>", require("fzf-lua").files)
+

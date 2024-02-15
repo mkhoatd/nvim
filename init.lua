@@ -1,2 +1,3 @@
 require("mkhoatd")
+
 print("hello")
