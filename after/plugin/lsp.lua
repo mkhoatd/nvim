@@ -1,34 +1,145 @@
 -- note: diagnostics are not exclusive to lsp servers
 -- so these can be global keybindings
-
+local cmp_ui = {
+    icons = true,
+    lspkind_text = true,
+    style = "default",            -- default/flat_light/flat_dark/atom/atom_colored
+    border_color = "grey_fg",     -- only applicable for "default" style, use color names from base30 variables
+    selected_item_bg = "colored", -- colored / simple
+}
+local cmp_style = cmp_ui.style
 local cmp = require('cmp')
 
-cmp.setup({
-    sources = {
-        { name = 'nvim_lsp' },
+local field_arrangement = {
+    atom = { "kind", "abbr", "menu" },
+    atom_colored = { "kind", "abbr", "menu" },
+}
+
+local formatting_style = {
+    -- default fields order i.e completion word + item.kind + item.kind icons
+    fields = field_arrangement[cmp_style] or { "abbr", "kind", "menu" },
+
+    format = function(_, item)
+        local icons = {
+            Namespace = "󰌗",
+            Text = "󰉿",
+            Method = "󰆧",
+            Function = "󰆧",
+            Constructor = "",
+            Field = "󰜢",
+            Variable = "󰀫",
+            Class = "󰠱",
+            Interface = "",
+            Module = "",
+            Property = "󰜢",
+            Unit = "󰑭",
+            Value = "󰎠",
+            Enum = "",
+            Keyword = "󰌋",
+            Snippet = "",
+            Color = "󰏘",
+            File = "󰈚",
+            Reference = "󰈇",
+            Folder = "󰉋",
+            EnumMember = "",
+            Constant = "󰏿",
+            Struct = "󰙅",
+            Event = "",
+            Operator = "󰆕",
+            TypeParameter = "󰊄",
+            Table = "",
+            Object = "󰅩",
+            Tag = "",
+            Array = "[]",
+            Boolean = "",
+            Number = "",
+            Null = "󰟢",
+            String = "󰉿",
+            Calendar = "",
+            Watch = "󰥔",
+            Package = "",
+            Copilot = "",
+            Codeium = "",
+            TabNine = "",
+        }
+        local icon = (cmp_ui.icons and icons[item.kind]) or ""
+
+        if cmp_style == "atom" or cmp_style == "atom_colored" then
+            icon = " " .. icon .. " "
+            item.menu = cmp_ui.lspkind_text and "   (" .. item.kind .. ")" or ""
+            item.kind = icon
+        else
+            icon = cmp_ui.lspkind_text and (" " .. icon .. " ") or icon
+            item.kind = string.format("%s %s", icon, cmp_ui.lspkind_text and item.kind or "")
+        end
+
+        return item
+    end,
+}
+
+local function border(hl_name)
+    return {
+        { "╭", hl_name },
+        { "─", hl_name },
+        { "╮", hl_name },
+        { "│", hl_name },
+        { "╯", hl_name },
+        { "─", hl_name },
+        { "╰", hl_name },
+        { "│", hl_name },
+    }
+end
+
+local options = {
+    completion = {
+        completeopt = "menu,menuone",
     },
-    mapping = cmp.mapping.preset.insert({
-        -- Enter key confirms completion item
-        --[[ ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-		['<C-f>'] = cmp.mapping.scroll_docs(4), ]]
-        ['<CR>'] = cmp.mapping.confirm({ select = false }),
-        ['<Tab>'] = cmp.mapping.select_next_item(),
-        ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-        ['<C-e>'] = cmp.mapping.abort(),
-        -- Ctrl + space triggers completion menu
-        ['<C-Space>'] = cmp.mapping.complete(),
-    }),
+    window = {
+        completion = {
+            side_padding = (cmp_style ~= "atom" and cmp_style ~= "atom_colored") and 1 or 0,
+            winhighlight = "Normal:CmpPmenu,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+            scrollbar = false,
+        },
+        documentation = {
+            border = border "CmpDocBorder",
+            winhighlight = "Normal:CmpDoc",
+        },
+    },
     snippet = {
         expand = function(args)
-            require('luasnip').lsp_expand(args.body)
+            require("luasnip").lsp_expand(args.body)
         end,
     },
+
+    formatting = formatting_style,
+    sources = {
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+        { name = "buffer" },
+        { name = "nvim_lua" },
+        { name = "path" },
+    },
+    mapping = cmp.mapping.preset.insert({
+        ['<CR>'] = cmp.mapping.confirm({ select = false }),
+        ['<C-j>'] = cmp.mapping.select_next_item(),
+        ['<C-k>'] = cmp.mapping.select_prev_item(),
+        ['<C-e>'] = cmp.mapping.abort(),
+        ['<C-Space>'] = cmp.mapping.complete(),
+    }),
     preselect = cmp.PreselectMode.None,
     confirmation = {
         completeopt = 'menu,menuone,noinsert',
         default_behavior = cmp.ConfirmBehavior.Insert,
     },
-})
+}
+
+if cmp_style ~= "atom" and cmp_style ~= "atom_colored" then
+    options.window.completion.border = border "CmpBorder"
+end
+
+require('neodev').setup({})
+
+cmp.setup(options)
 
 local function merge(t1, t2)
     for i = 1, #t2 do t1[#t1 + 1] = t2[i] end
@@ -38,26 +149,19 @@ end
 vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
 vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
 vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
+vim.keymap.set("n", "<leader>f", function()
+    vim.lsp.buf.format()
+end)
 
 local function mapping(client, bufnr)
     local opts = { noremap = true, silent = true, buffer = bufnr }
 
-    local buf_code_action = "<Cmd>lua vim.lsp.buf.code_action()<CR>"
-    local buf_code_action_opts = merge({ desc = "View code actions" }, opts)
     local buf_def = "<Cmd>lua vim.lsp.buf.definition()<CR>"
     local buf_def_split = "<Cmd>sp | lua vim.lsp.buf.definition()<CR>"
     local buf_def_vsplit = "<Cmd>vsp | lua vim.lsp.buf.definition()<CR>"
-    local buf_doc_sym = "<Cmd>lua vim.lsp.buf.document_symbol()<CR>"
-    local buf_doc_sym_opts = merge({ desc = "List doc symbols in qf win" }, opts)
     local buf_hover = "<Cmd>lua vim.lsp.buf.hover()<CR>"
-    local buf_impl = "<Cmd>lua vim.lsp.buf.implementation()<CR>"
-    local buf_impl_opts = merge({ desc = "List all implementations" }, opts)
     local buf_incoming_calls = "<Cmd>lua vim.lsp.buf.incoming_calls()<CR>"
     local buf_incoming_calls_opts = merge({ desc = "List all callers" }, opts)
-    local buf_project = "<Cmd>lua vim.lsp.buf.workspace_symbol()<CR>"
-    local buf_project_opts = merge({ desc = "Search project-wide symbols" }, opts)
-    local buf_ref = "<Cmd>lua vim.lsp.buf.references()<CR>"
-    local buf_ref_opts = merge({ desc = "List all references" }, opts)
     local buf_rename = "<Cmd>lua vim.lsp.buf.rename()<CR>"
     local buf_rename_opts = merge({ desc = "Rename symbol" }, opts)
     local buf_sig_help = "<Cmd>lua vim.lsp.buf.signature_help()<CR>"
@@ -82,14 +186,9 @@ local function mapping(client, bufnr)
     vim.keymap.set('n', ']s', diag_show, diag_show_opts)
     vim.keymap.set('n', ']x', diag_next, diag_next_opts)
     vim.keymap.set('n', 'K', buf_hover, opts)
-    vim.keymap.set('n', 'ga', buf_code_action, buf_code_action_opts)
     vim.keymap.set('n', 'gc', buf_incoming_calls, buf_incoming_calls_opts)
-    vim.keymap.set('n', 'gd', buf_doc_sym, buf_doc_sym_opts)
     vim.keymap.set('n', 'gh', buf_sig_help, buf_sig_help_opts)
-    vim.keymap.set('n', 'gi', buf_impl, buf_impl_opts)
     vim.keymap.set('n', 'gn', buf_rename, buf_rename_opts)
-    vim.keymap.set('n', 'gp', buf_project, buf_project_opts)
-    vim.keymap.set('n', 'gr', buf_ref, buf_ref_opts)
     vim.keymap.set('n', 'gy', buf_type, buf_type_opts)
 
     if client.server_capabilities.documentSymbolProvider then
@@ -122,7 +221,7 @@ end
 
 local function default_on_attach(client, bufnr)
     mapping(client, bufnr)
-    require('lsp-inlayhints').setup({})
+    require('lsp-inlayhints').setup()
     require("lsp-inlayhints").on_attach(client, bufnr)
     require("illuminate").on_attach(client)
 end
@@ -132,24 +231,33 @@ local lspconfig = require('lspconfig')
 
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+
+require('mason').setup()
+
+local mason_lspconfig = require('mason-lspconfig')
+
+local handlers = {
+    ["textDocument/hover"] = vim.lsp.with(
+        vim.lsp.handlers.hover, { border = border("FloatBorder") }),
+    ["textDocument/signatureHelp"] = vim.lsp.with(
+        vim.lsp.handlers.signature_help, { border = border("FloatBorder") }),
+}
+
 local default_setup = function(server_name)
-    if server_name ~= 'gopls' and server_name ~= 'lua_ls' then
+    if server_name ~= 'gopls' and server_name ~= 'lua_ls' and server_name ~= 'powershell_ls' then
         lspconfig[server_name].setup({
+            handlers = handlers,
             capabilities = lsp_capabilities,
             on_attach = default_on_attach
         })
     end
 end
 
-require('mason').setup()
-
-local mason_lspconfig = require('mason-lspconfig')
-
 mason_lspconfig.setup({
-    ensure_installed = { 'lua_ls', 'pyright', 'dockerls',
+    --[[ ensure_installed = { 'lua_ls', 'pyright', 'dockerls',
         'docker_compose_language_service',
         'jsonls', 'marksman', 'spectral', 'sqlls',
-        'gopls', 'golangci_lint_ls' },
+        'gopls', 'golangci_lint_ls' }, ]]
     automatic_installation = true,
     handlers = {
         default_setup,
@@ -158,22 +266,12 @@ mason_lspconfig.setup({
 
 lspconfig.lua_ls.setup({
     capabilities = lsp_capabilities,
+    handlers = handlers,
     settings = {
         Lua = {
             completion = {
                 callSnippet = "Replace"
             },
-            runtime = {
-                version = 'LuaJIT'
-            },
-            diagnostics = {
-                globals = { 'vim' },
-            },
-            workspace = {
-                library = {
-                    vim.env.VIMRUNTIME,
-                }
-            }
         }
     },
     on_attach = default_on_attach
@@ -181,6 +279,7 @@ lspconfig.lua_ls.setup({
 
 lspconfig.gopls.setup({
     capabilities = lsp_capabilities,
+    handlers = handlers,
     settings = {
         gopls = {
             analyses = {
@@ -193,6 +292,7 @@ lspconfig.gopls.setup({
             staticcheck = true,
             gofumpt = true,
             usePlaceholders = true,
+            completeUnimported = true,
 
             hints = {
                 assignVariableTypes = true,
@@ -207,6 +307,10 @@ lspconfig.gopls.setup({
     },
     on_attach = default_on_attach
 })
+
+lspconfig.powershell_es.setup{
+  bundle_path = 'C:/Users/mkhoatd/PowerShellEditorServices',
+}
 
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*.go",

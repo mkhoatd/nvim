@@ -23,25 +23,24 @@ map.set("n", "d", "\"_d")
 map.set("v", "d", "\"_d")
 map.set("n", "dd", "\"_dd")
 map.set("v", "dd", "\"_dd")
-map.set("n", "x", "\"+x")
-map.set("v", "x", "\"+x")
+map.set("n", "x", "\"_x")
+map.set("v", "x", "\"_x")
+map.set("n", "c", "\"+x")
+map.set("v", "c", "\"+x")
 
+map.set("n", "<C-v>", "\"+p")
+map.set("i", "<C-v>", "\"+p")
 map.set("n", "p", "\"+p")
 map.set("v", "p", "\"+p")
 
 map.set("i", "<C-c>", "<Esc>l")
+map.set("i", "kj", "<Esc>l")
 
 map.set("n", "Q", "<nop>")
-map.set("n", "<leader>f", function()
-    vim.lsp.buf.format()
-end)
 map.set("n", "<leader>rn", vim.lsp.buf.rename)
 
-
-map.set("n", "<C-k>", "<cmd>cnext<CR>zz")
-map.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+--[[ map.set("n", "<C-k>", "<cmd>cnext<CR>zz")
+map.set("n", "<C-j>", "<cmd>cprev<CR>zz") ]]
 map.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 map.set("n", "<leader>j", "<cmd>lnext<CR>zz")
 
-local fzf = require("fzf-lua")
-map.set("n", "<C-p>", require("fzf-lua").files)

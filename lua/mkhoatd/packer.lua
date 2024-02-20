@@ -26,16 +26,12 @@ return require('packer').startup(function(use)
 
     use {
         'nvim-telescope/telescope.nvim',
-        -- or                            , branch = '0.1.x',
-        requires = { { 'nvim-lua/plenary.nvim' } }
+        requires = { { 'nvim-lua/plenary.nvim' } },
     }
 
     use({
         'rose-pine/neovim',
         as = 'rose-pine',
-        config = function()
-            vim.cmd('colorscheme rose-pine')
-        end
     })
 
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
@@ -87,7 +83,68 @@ return require('packer').startup(function(use)
 
     use {
         "SmiteshP/nvim-navic",
-        requires = "neovim/nvim-lspconfig"
+        requires = "neovim/nvim-lspconfig",
+        config = function()
+            vim.api.nvim_set_hl(0, "NavicIconsFile", { default = true, bg = "#000000", fg = "#ffffff" })
+            vim.api.nvim_set_hl(0, "NavicIconsModule", { default = true, bg = "#000000", fg = "#ffffff" })
+            vim.api.nvim_set_hl(0, "NavicIconsNamespace", { default = true, bg = "#000000", fg = "#ffffff" })
+            vim.api.nvim_set_hl(0, "NavicIconsPackage", { default = true, bg = "#000000", fg = "#ffffff" })
+            vim.api.nvim_set_hl(0, "NavicIconsClass", { default = true, bg = "#000000", fg = "#ffffff" })
+            vim.api.nvim_set_hl(0, "NavicIconsMethod", { default = true, bg = "#000000", fg = "#ffffff" })
+            vim.api.nvim_set_hl(0, "NavicIconsProperty", { default = true, bg = "#000000", fg = "#ffffff" })
+            vim.api.nvim_set_hl(0, "NavicIconsField", { default = true, bg = "#000000", fg = "#ffffff" })
+            vim.api.nvim_set_hl(0, "NavicIconsConstructor", { default = true, bg = "#000000", fg = "#ffffff" })
+            vim.api.nvim_set_hl(0, "NavicIconsEnum", { default = true, bg = "#000000", fg = "#ffffff" })
+            vim.api.nvim_set_hl(0, "NavicIconsInterface", { default = true, bg = "#000000", fg = "#ffffff" })
+            vim.api.nvim_set_hl(0, "NavicIconsFunction", { default = true, bg = "#000000", fg = "#ffffff" })
+            vim.api.nvim_set_hl(0, "NavicIconsVariable", { default = true, bg = "#000000", fg = "#ffffff" })
+            vim.api.nvim_set_hl(0, "NavicIconsConstant", { default = true, bg = "#000000", fg = "#ffffff" })
+            vim.api.nvim_set_hl(0, "NavicIconsString", { default = true, bg = "#000000", fg = "#ffffff" })
+            vim.api.nvim_set_hl(0, "NavicIconsNumber", { default = true, bg = "#000000", fg = "#ffffff" })
+            vim.api.nvim_set_hl(0, "NavicIconsBoolean", { default = true, bg = "#000000", fg = "#ffffff" })
+            vim.api.nvim_set_hl(0, "NavicIconsArray", { default = true, bg = "#000000", fg = "#ffffff" })
+            vim.api.nvim_set_hl(0, "NavicIconsObject", { default = true, bg = "#000000", fg = "#ffffff" })
+            vim.api.nvim_set_hl(0, "NavicIconsKey", { default = true, bg = "#000000", fg = "#ffffff" })
+            vim.api.nvim_set_hl(0, "NavicIconsNull", { default = true, bg = "#000000", fg = "#ffffff" })
+            vim.api.nvim_set_hl(0, "NavicIconsEnumMember", { default = true, bg = "#000000", fg = "#ffffff" })
+            vim.api.nvim_set_hl(0, "NavicIconsStruct", { default = true, bg = "#000000", fg = "#ffffff" })
+            vim.api.nvim_set_hl(0, "NavicIconsEvent", { default = true, bg = "#000000", fg = "#ffffff" })
+            vim.api.nvim_set_hl(0, "NavicIconsOperator", { default = true, bg = "#000000", fg = "#ffffff" })
+            vim.api.nvim_set_hl(0, "NavicIconsTypeParameter", { default = true, bg = "#000000", fg = "#ffffff" })
+            vim.api.nvim_set_hl(0, "NavicText", { default = true, bg = "#000000", fg = "#ffffff" })
+            vim.api.nvim_set_hl(0, "NavicSeparator", { default = true, bg = "#000000", fg = "#ffffff" })
+            local navic = require("navic")
+            navic.setup {
+                icons = {
+                    File = ' ',
+                    Module = ' ',
+                    Namespace = ' ',
+                    Package = ' ',
+                    Class = ' ',
+                    Method = ' ',
+                    Property = ' ',
+                    Field = ' ',
+                    Constructor = ' ',
+                    Enum = ' ',
+                    Interface = ' ',
+                    Function = ' ',
+                    Variable = ' ',
+                    Constant = ' ',
+                    String = ' ',
+                    Number = ' ',
+                    Boolean = ' ',
+                    Array = ' ',
+                    Object = ' ',
+                    Key = ' ',
+                    Null = ' ',
+                    EnumMember = ' ',
+                    Struct = ' ',
+                    Event = ' ',
+                    Operator = ' ',
+                    TypeParameter = ' '
+                }
+            }
+        end
     }
 
     use {
@@ -100,11 +157,49 @@ return require('packer').startup(function(use)
             "nvim-telescope/telescope.nvim" -- Optional
         }
     }
-    use { "junegunn/fzf", run = "./install --bin" }
+    use { "nvim-tree/nvim-web-devicons" }
     use { "ibhagwan/fzf-lua",
         -- optional for icon support
         requires = { "nvim-tree/nvim-web-devicons" }
     }
+    use {
+        "nvim-telescope/telescope-file-browser.nvim",
+        requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+    }
+
+    use { 'ojroques/nvim-bufdel' }
+    use { 'mfussenegger/nvim-dap',
+        requires = { "rcarriga/nvim-dap-ui",
+            "williamboman/mason.nvim",
+            "jay-babu/mason-nvim-dap.nvim",
+            'leoluz/nvim-dap-go' },
+    }
+
+    use { 'olexsmir/gopher.nvim',
+        config = function()
+            require("gopher").setup {
+                commands = {
+                    dlv = "dlv",
+                    go = "go",
+                    gomodifytags = "gomodifytags",
+                    gotests = "~/go/bin/gotests", -- also you can set custom command path
+                    impl = "impl",
+                    iferr = "iferr",
+                },
+            }
+        end
+    }
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+    }
+    use({
+        'nvimdev/lspsaga.nvim',
+        after = 'nvim-lspconfig',
+        config = function()
+            require('lspsaga').setup({})
+        end,
+    })
     if packer_bootstrap then
         require('packer').sync()
     end

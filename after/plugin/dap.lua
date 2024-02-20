@@ -46,5 +46,15 @@ dap.listeners.before.event_terminated['dapui_config'] = dapui.close
 dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
 -- Install golang specific config
-require('dap-go').setup()
+
+dap.adapters.go = {
+    type = "server",
+    port = "${port}",
+    executable = {
+        command = "dlv",
+        args = {"dap", "--listen=127.0.0.1:${port}"}
+    }
+}
+
+require("dap.ext.vscode").load_launchjs(nil, {})
 
