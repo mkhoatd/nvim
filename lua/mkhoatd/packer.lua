@@ -139,6 +139,7 @@ return require('packer').startup(function(use)
             require('lspsaga').setup({})
         end,
     })
+    use { 'dccsillag/magma-nvim', run = ':UpdateRemotePlugins' }
     if packer_bootstrap then
         require('packer').sync()
     end
