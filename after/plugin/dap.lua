@@ -2,11 +2,8 @@ local dap = require("dap")
 local dapui = require("dapui")
 
 require("mason-nvim-dap").setup {
-    automatic_installation = true,
+    automatic_installation = false,
     handlers = {},
-    ensure_installed = {
-        'delve'
-    }
 }
 
 vim.keymap.set('n', '<F5>', dap.continue, { desc = 'Debug: Start/Continue' })

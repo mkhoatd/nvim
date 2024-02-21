@@ -258,7 +258,7 @@ mason_lspconfig.setup({
         'docker_compose_language_service',
         'jsonls', 'marksman', 'spectral', 'sqlls',
         'gopls', 'golangci_lint_ls' }, ]]
-    automatic_installation = true,
+    automatic_installation = false,
     handlers = {
         default_setup,
     },
