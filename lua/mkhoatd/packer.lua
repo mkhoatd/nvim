@@ -139,7 +139,13 @@ return require('packer').startup(function(use)
             require('lspsaga').setup({})
         end,
     })
-    use { 'dccsillag/magma-nvim', run = ':UpdateRemotePlugins' }
+    use {
+        "benlubas/molten-nvim",
+        run = ":UpdateRemotePlugins",
+        config = function()
+            vim.g.molten_output_win_max_height = 12
+        end
+    }
     if packer_bootstrap then
         require('packer').sync()
     end
