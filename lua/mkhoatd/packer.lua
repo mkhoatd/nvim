@@ -1,3 +1,4 @@
+--[[
 local ensure_packer = function()
     local fn = vim.fn
     local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
@@ -150,3 +151,4 @@ return require('packer').startup(function(use)
         require('packer').sync()
     end
 end)
+--]]

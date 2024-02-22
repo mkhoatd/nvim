@@ -1,6 +1,10 @@
 vim.g.mapleader = " "
 local map = vim.keymap
 
+map.set("n", "<leader>le", function ()
+    vim.cmd([[%s/\r//g]])
+end)
+
 map.set("n", "<leader>b", vim.cmd.Ex)
 
 map.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -43,4 +47,7 @@ map.set("n", "<leader>rn", vim.lsp.buf.rename)
 map.set("n", "<C-j>", "<cmd>cprev<CR>zz") ]]
 map.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 map.set("n", "<leader>j", "<cmd>lnext<CR>zz")
+
+map.set("t", "kj", "<C-\\><C-n>")
+map.set("t", "<Esc>", "<C-\\><C-n>")
 
