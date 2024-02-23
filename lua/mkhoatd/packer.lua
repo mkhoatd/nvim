@@ -19,11 +19,10 @@ packer.init({
     log = { level = 'trace' }, -- The default print log level. One of: "trace", "debug", "info", "warn", "error", "fatal".
 })
 
-
 return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
-
+    use 'LazyVim/LazyVim'
     use {
         'nvim-telescope/telescope.nvim',
         requires = { { 'nvim-lua/plenary.nvim' } },
@@ -97,10 +96,6 @@ return require('packer').startup(function(use)
         }
     }
     use { "nvim-tree/nvim-web-devicons" }
-    use { "ibhagwan/fzf-lua",
-        -- optional for icon support
-        requires = { "nvim-tree/nvim-web-devicons" }
-    }
     use {
         "nvim-telescope/telescope-file-browser.nvim",
         requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }

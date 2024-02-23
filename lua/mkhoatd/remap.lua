@@ -44,3 +44,6 @@ map.set("n", "<C-j>", "<cmd>cprev<CR>zz") ]]
 map.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 map.set("n", "<leader>j", "<cmd>lnext<CR>zz")
 
+map.set('t', 'kj', '<C-\\><C-n>')
+map.set('t', '<Esc>', '<C-\\><C-n>')
+
