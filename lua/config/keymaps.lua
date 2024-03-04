@@ -15,6 +15,10 @@ keymap.set("n", "<C-u>", "<C-u>zz")
 keymap.set("n", "+", "<C-a>")
 keymap.set("n", "-", "<C-x>")
 
+-- Paste without replacing the register
+keymap.set("n", "p", "P", opts)
+keymap.set("v", "p", "P", opts)
+
 -- Map depete
 keymap.set("n", "d", '"_d', opts)
 keymap.set("v", "d", '"_d', opts)
