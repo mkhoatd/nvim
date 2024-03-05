@@ -74,3 +74,6 @@ keymap.set("n", "K", "<cmd>Lspsaga hover_doc <CR>")
 
 -- Terminal
 keymap.set("t", "kj", "<C-\\><C-n>", opts)
+
+-- Chatgpt
+keymap.set("n", "<leader>cg", ":ChatGPT <CR>", opts)
