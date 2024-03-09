@@ -2,7 +2,9 @@ return {
   "neovim/nvim-lspconfig",
   init = function()
     local keys = require("lazyvim.plugins.lsp.keymaps").get()
+    local builtin = require("telescope.builtin")
     -- change a keymap
     keys[#keys + 1] = { "K", false }
+    keys[#keys + 1] = { "gI", builtin.lsp_implementations }
   end,
 }
