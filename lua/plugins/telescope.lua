@@ -1,142 +1,149 @@
-local os = vim.loop.os_uname().sysname
-local build = "make"
-if os == "Windows_NT" then
-  build =
-    "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
-end
-
-local Util = require("lazyvim.util")
-
 return {
   "nvim-telescope/telescope.nvim",
-  cmd = "Telescope",
-  version = false, -- telescope did only one release, so use HEAD for now
   dependencies = {
-    {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      build = build,
-      enabled = vim.fn.executable("make") == 1,
-      config = function()
-        Util.on_load("telescope.nvim", function()
-          require("telescope").load_extension("fzf")
-        end)
-      end,
-    },
+    "nvim-telescope/telescope-file-browser.nvim",
   },
   keys = {
     {
-      "<leader>,",
-      "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>",
-      desc = "Switch Buffer",
-    },
-    { "<leader>/", Util.telescope("live_grep"), desc = "Grep (root dir)" },
-    { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
-    { "<leader><space>", Util.telescope("files"), desc = "Find Files (root dir)" },
-    -- find
-    { "<leader>fb", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", desc = "Buffers" },
-    { "<leader>fc", Util.telescope.config_files(), desc = "Find Config File" },
-    { "<leader>ff", Util.telescope("files"), desc = "Find Files (root dir)" },
-    { "<leader>fF", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
-    { "<leader>fg", "<cmd>Telescope git_files<cr>", desc = "Find Files (git-files)" },
-    { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
-    { "<leader>fR", Util.telescope("oldfiles", { cwd = vim.loop.cwd() }), desc = "Recent (cwd)" },
-    -- git
-    { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "commits" },
-    { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "status" },
-    -- search
-    { '<leader>s"', "<cmd>Telescope registers<cr>", desc = "Registers" },
-    { "<leader>sa", "<cmd>Telescope autocommands<cr>", desc = "Auto Commands" },
-    { "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buffer" },
-    { "<leader>sc", "<cmd>Telescope command_history<cr>", desc = "Command History" },
-    { "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
-    { "<leader>sd", "<cmd>Telescope diagnostics bufnr=0<cr>", desc = "Document diagnostics" },
-    { "<leader>sD", "<cmd>Telescope diagnostics<cr>", desc = "Workspace diagnostics" },
-    { "<leader>sg", Util.telescope("live_grep"), desc = "Grep (root dir)" },
-    { "<leader>sG", Util.telescope("live_grep", { cwd = false }), desc = "Grep (cwd)" },
-    { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
-    { "<leader>sH", "<cmd>Telescope highlights<cr>", desc = "Search Highlight Groups" },
-    { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Key Maps" },
-    { "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
-    { "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Jump to Mark" },
-    { "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
-    { "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
-    { "<leader>sw", Util.telescope("grep_string", { word_match = "-w" }), desc = "Word (root dir)" },
-    { "<leader>sW", Util.telescope("grep_string", { cwd = false, word_match = "-w" }), desc = "Word (cwd)" },
-    { "<leader>sw", Util.telescope("grep_string"), mode = "v", desc = "Selection (root dir)" },
-    { "<leader>sW", Util.telescope("grep_string", { cwd = false }), mode = "v", desc = "Selection (cwd)" },
-    { "<leader>uC", Util.telescope("colorscheme", { enable_preview = true }), desc = "Colorscheme with preview" },
-    {
-      "<leader>ss",
+      "<leader>fP",
       function()
-        require("telescope.builtin").lsp_document_symbols({
-          symbols = require("lazyvim.config").get_kind_filter(),
+        require("telescope.builtin").find_files({
+          cwd = require("lazy.core.config").options.root,
         })
       end,
-      desc = "Goto Symbol",
+      desc = "Find Plugin file",
     },
     {
-      "<leader>sS",
+      ";f",
       function()
-        require("telescope.builtin").lsp_dynamic_workspace_symbols({
-          symbols = require("lazyvim.config").get_kind_filter(),
+        local builtin = require("telescope.builtin")
+        builtin.find_files({
+          no_ignore = false,
+          hidden = true,
         })
       end,
-      desc = "Goto Symbol (Workspace)",
+    },
+    {
+      ";r",
+      function()
+        local builtin = require("telescope.builtin")
+        builtin.live_grep()
+      end,
+    },
+    {
+      "\\\\",
+      function()
+        local builtin = require("telescope.builtin")
+        builtin.buffers()
+      end,
+    },
+    {
+      ";t",
+      function()
+        local builtin = require("telescope.builtin")
+        builtin.help_tags()
+      end,
+    },
+    {
+      ";;",
+      function()
+        local builtin = require("telescope.builtin")
+        builtin.resume()
+      end,
+    },
+    {
+      ";e",
+      function()
+        local builtin = require("telescope.builtin")
+        builtin.diagnostics()
+      end,
+    },
+    {
+      ";s",
+      function()
+        local builtin = require("telescope.builtin")
+        builtin.treesitter()
+      end,
+    },
+    {
+      "sf",
+      function()
+        local telescope = require("telescope")
+        local function telescope_buffer_dif()
+          return vim.fn.expand("%:p:h")
+        end
+
+        telescope.extensions.file_browser.file_browser({
+          path = "%:p:h",
+          cwd = telescope_buffer_dif(),
+          respect_gitignore = false,
+          hidden = true,
+          grouped = true,
+          previewer = false,
+          initial_mode = "normal",
+          layout_config = { height = 40 },
+        })
+      end,
     },
   },
-  opts = function()
+  config = function(_, opts)
+    local telescope = require("telescope")
     local actions = require("telescope.actions")
+    local fb_actions = require("telescope").extensions.file_browser.actions
 
-    local open_with_trouble = function(...)
-      return require("trouble.providers.telescope").open_with_trouble(...)
-    end
-    local open_selected_with_trouble = function(...)
-      return require("trouble.providers.telescope").open_selected_with_trouble(...)
-    end
-    local find_files_no_ignore = function()
-      local action_state = require("telescope.actions.state")
-      local line = action_state.get_current_line()
-      Util.telescope("find_files", { no_ignore = true, default_text = line })()
-    end
-    local find_files_with_hidden = function()
-      local action_state = require("telescope.actions.state")
-      local line = action_state.get_current_line()
-      Util.telescope("find_files", { hidden = true, default_text = line })()
-    end
-
-    return {
-      defaults = {
-        prompt_prefix = " ",
-        selection_caret = " ",
-        -- open files in the first window that is an actual file.
-        -- use the current window if no other window is available.
-        get_selection_window = function()
-          local wins = vim.api.nvim_list_wins()
-          table.insert(wins, 1, vim.api.nvim_get_current_win())
-          for _, win in ipairs(wins) do
-            local buf = vim.api.nvim_win_get_buf(win)
-            if vim.bo[buf].buftype == "" then
-              return win
-            end
-          end
-          return 0
-        end,
+    opts.defaults = vim.tbl_deep_extend("force", opts.defaults, {
+      wrap_result = true,
+      layout_strategy = "horizontal",
+      layout_config = {
+        prompt_position = "top",
+      },
+      sorting_strategy = "ascending",
+      winblend = 0,
+      mapping = {
+        n = {},
+      },
+    })
+    opts.pickers = {
+      diganostics = {
+        theme = "ivy",
+        initial_mode = "normal",
+        layout_config = {
+          preview_cutoff = "9999",
+        },
+      },
+    }
+    opts.extensions = {
+      file_browser = {
+        theme = "dropdown",
+        -- disables netrw and use telescope-file-browser in its place
+        hijack_netrw = true,
         mappings = {
-          i = {
-            ["<c-t>"] = open_with_trouble,
-            ["<a-t>"] = open_selected_with_trouble,
-            ["<a-i>"] = find_files_no_ignore,
-            ["<a-h>"] = find_files_with_hidden,
-            ["<C-Down>"] = actions.cycle_history_next,
-            ["<C-Up>"] = actions.cycle_history_prev,
-            ["<C-f>"] = actions.preview_scrolling_down,
-            ["<C-b>"] = actions.preview_scrolling_up,
-          },
-          n = {
-            ["q"] = actions.close,
+          -- your custom insert mode mappings
+          ["n"] = {
+            -- your custom normal mode mappings
+            ["N"] = fb_actions.create,
+            ["h"] = fb_actions.goto_parent_dir,
+            ["/"] = function()
+              vim.cmd("startinsert")
+            end,
+            ["<C-u>"] = function(prompt_bufnr)
+              for i = 1, 10 do
+                actions.move_selection_previous(prompt_bufnr)
+              end
+            end,
+            ["<C-d>"] = function(prompt_bufnr)
+              for i = 1, 10 do
+                actions.move_selection_next(prompt_bufnr)
+              end
+            end,
+            ["<PageUp>"] = actions.preview_scrolling_up,
+            ["<PageDown>"] = actions.preview_scrolling_down,
           },
         },
       },
     }
+    telescope.setup(opts)
+    require("telescope").load_extension("fzf")
+    require("telescope").load_extension("file_browser")
   end,
 }

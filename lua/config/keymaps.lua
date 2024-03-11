@@ -39,7 +39,7 @@ keymap.set("n", "<C-a>", "gg<S-v>G")
 keymap.set("n", "<C-m>", "<C-i>", opts)
 
 -- New tab
-keymap.set("n", "te", ":tabedit", opts)
+keymap.set("n", "te", ":tabedit ", opts)
 keymap.set("n", "<tab>", ":tabnext<Return>", opts)
 keymap.set("n", "<S-tab>", ":tabprev<Return>", opts)
 
@@ -53,8 +53,8 @@ keymap.set("n", "sl", "<C-w>l")
 keymap.set("n", "sj", "<C-w>j")
 
 -- Resize window
-keymap.set("n", "<C-w><left>", "<C-w><")
-keymap.set("n", "<C-w><right>", "<C-w>>")
+keymap.set("n", "<C-w><left>", "<C><")
+keymap.set("n", "<C-w><right>", "<C>>")
 keymap.set("n", "<C-w><down>", "<C-w>-")
 keymap.set("n", "<C-w><up>", "<C-w>+")
 
@@ -70,10 +70,11 @@ keymap.set("n", "<leader>5", vim.cmd.UndotreeToggle)
 keymap.set("n", "<C-t>", "<cmd>Lspsaga term_toggle <CR>")
 keymap.set("t", "<C-t>", "<cmd>Lspsaga term_toggle <CR>")
 keymap.set("n", "<C-i>", "<cmd>Lspsaga code_action <CR>")
-keymap.set("n", "K", "<cmd>Lspsaga hover_doc <CR>")
+-- keymap.set("n", "K", "<cmd>Lspsaga hover_doc <CR>")
 
 -- Terminal
 keymap.set("t", "kj", "<C-\\><C-n>", opts)
+keymap.set("n", "vt", ":vsplit<Return>:terminal<Return>a", opts)
 
 -- Chatgpt
 keymap.set("n", "<leader>cg", ":ChatGPT <CR>", opts)
