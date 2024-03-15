@@ -30,6 +30,7 @@ vim.opt.scrolloff = 8
 -- Case-insensitive searching UNLESS \C or capital in search
 vim.o.ignorecase = true
 vim.o.smartcase = true
+vim.opt.signcolumn = "yes"
 
 -- Keep signcolumn on by default
 -- vim.wo.signcolumn = "yes"
