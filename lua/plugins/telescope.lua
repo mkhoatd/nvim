@@ -66,6 +66,26 @@ return {
       end,
     },
     {
+      "sin",
+      function()
+        local telescope = require("telescope")
+        local function telescope_buffer_dif()
+          return vim.fn.expand("%:p:h")
+        end
+
+        telescope.extensions.file_browser.file_browser({
+          path = "%:p:h",
+          cwd = telescope_buffer_dif(),
+          respect_gitignore = true,
+          hidden = true,
+          grouped = true,
+          previewer = false,
+          initial_mode = "normal",
+          layout_config = { height = 40 },
+        })
+      end,
+    },
+    {
       "sf",
       function()
         local telescope = require("telescope")

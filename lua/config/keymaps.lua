@@ -8,9 +8,10 @@ local opts = { noremap = true, silent = true }
 keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 keymap.set("i", "kj", "<Esc>l", opts)
-keymap.set("i", "jk", "<Esc>l", opts)
-keymap.set("n", "<C-d>", "<C-d>zz")
-keymap.set("n", "<C-u>", "<C-u>zz")
+keymap.set("v", "q", "<Esc>", opts)
+keymap.set("i", "jk", "<Esc>", opts)
+-- keymap.set("n", "<C-d>", "<C-d>zz")
+-- keymap.set("n", "<C-u>", "<C-u>zz")
 -- Increment/decrement
 keymap.set("n", "+", "<C-a>")
 keymap.set("n", "-", "<C-x>")
