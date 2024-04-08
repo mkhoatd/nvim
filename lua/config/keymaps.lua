@@ -7,7 +7,7 @@ local opts = { noremap = true, silent = true }
 -- Map movement
 keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-keymap.set("i", "kj", "<Esc>l", opts)
+-- keymap.set("i", "kj", "<Esc>l", opts)
 keymap.set("v", "q", "<Esc>", opts)
 keymap.set("i", "jk", "<Esc>", opts)
 -- keymap.set("n", "<C-d>", "<C-d>zz")
@@ -74,7 +74,7 @@ keymap.set("n", "<C-i>", "<cmd>Lspsaga code_action <CR>")
 -- keymap.set("n", "K", "<cmd>Lspsaga hover_doc <CR>")
 
 -- Terminal
-keymap.set("t", "kj", "<C-\\><C-n>", opts)
+keymap.set("t", "<C-[>", "<C-\\><C-n>", opts)
 keymap.set("n", "vt", ":vsplit<Return>:terminal<Return>a", opts)
 
 -- Chatgpt

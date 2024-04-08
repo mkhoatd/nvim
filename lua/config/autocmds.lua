@@ -27,3 +27,14 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
     vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = "NONE", ctermbg = "NONE" })
   end,
 })
+
+-- vim.api.nvim_create_augroup("typst", { clear = true })
+--
+-- vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+--   pattern = "*.typ",
+--   group = "typst",
+--   callback = function()
+--     -- Set the file encoding to UTF-16LE or UTF-16BE depending on your needs
+--     vim.bo.fileencoding = "utf-16le"
+--   end,
+-- })
