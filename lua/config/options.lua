@@ -10,12 +10,13 @@ vim.o.undofile = true
 
 vim.o.nu = true
 vim.o.relativenumber = true
-vim.o.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+-- vim.o.tabstop = 4
+-- vim.opt.softtabstop = 4
+-- vim.opt.shiftwidth = 4
+-- vim.opt.expandtab = true
 
 vim.opt.smartindent = true
+vim.opt.autoindent = true
 
 vim.opt.wrap = false
 
@@ -41,6 +42,32 @@ vim.cmd([[let &t_Cs = "\e[4:3m"]])
 
 vim.g.lazyvim_python_lsp = "pyright"
 
+vim.g.clipboard = {
+  name = "win32yank-wsl",
+  copy = {
+    ["+"] = "win32yank.exe -i --crlf",
+    ["*"] = "win32yank.exe -i --crlf",
+  },
+  paste = {
+    ["+"] = "win32yank.exe -o --lf",
+    ["*"] = "win32yank.exe -o --lf",
+  },
+  cache_enabled = true,
+}
+
 vim.lsp.set_log_level("debug")
+
+-- let g:clipboard = {
+--                'name': 'WslClipboard',
+--                'copy': {
+--                   '+': 'clip.exe',
+--                   '*': 'clip.exe',
+--                 },
+--                'paste': {
+--                   '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+--                   '*': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+--                },
+--                'cache_enabled': 0,
+--              }
 
 vim.o.encoding = "utf-8"

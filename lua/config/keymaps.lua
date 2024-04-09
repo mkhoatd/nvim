@@ -7,7 +7,7 @@ local opts = { noremap = true, silent = true }
 -- Map movement
 keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
--- keymap.set("i", "kj", "<Esc>l", opts)
+keymap.set("i", "kj", "<Esc>l", opts)
 keymap.set("v", "q", "<Esc>", opts)
 keymap.set("i", "jk", "<Esc>", opts)
 -- keymap.set("n", "<C-d>", "<C-d>zz")
