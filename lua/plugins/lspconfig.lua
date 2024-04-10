@@ -84,19 +84,20 @@ return {
           },
         },
       },
-      gopls = {
-        settings = {
-          hints = {
-            rangeVariableTypes = true,
-            parameterNames = true,
-            constantValues = true,
-            assignVariableTypes = true,
-            compositeLiteralFields = true,
-            compositeLiteralTypes = true,
-            functionTypeParameters = true,
-          },
-        },
-      },
+      -- --- @type lspcoonfig.options.gopls
+      -- gopls = {
+      --   settings = {
+      --     hints = {
+      --       rangeVariableTypes = true,
+      --       parameterNames = true,
+      --       constantValues = true,
+      --       assignVariableTypes = true,
+      --       compositeLiteralFields = true,
+      --       compositeLiteralTypes = true,
+      --       functionTypeParameters = true,
+      --     },
+      --   },
+      -- },
       --- @type lspconfig.options.lua_ls
       lua_ls = {
         settings = {

@@ -77,5 +77,9 @@ keymap.set("n", "<C-i>", "<cmd>Lspsaga code_action <CR>")
 keymap.set("t", "<C-[>", "<C-\\><C-n>", opts)
 keymap.set("n", "vt", ":vsplit<Return>:terminal<Return>a", opts)
 
--- Chatgpt
-keymap.set("n", "<leader>cg", ":ChatGPT <CR>", opts)
+-- Cody
+keymap.set("n", "<leader>oc", ":CodyChat2 <CR>", opts)
+keymap.set("v", "<leader>oa", ":CodyAsk2 ", opts)
+keymap.set("v", "<leader>oe", ":CodyExplain2 <CR>", opts)
+keymap.set("v", "<leader>os", ":CodySearch2 <CR>", opts)
+keymap.set("v", "<leader>ot", ":CodyTask2 ", opts)

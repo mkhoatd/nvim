@@ -27,6 +27,13 @@ return {
           }
         end
       end
+      -- --- @type cmp.SourceConfig
+      -- local cody_src = {
+      --   name = "cody",
+      --   group_index = 1,
+      --   priority = 100,
+      -- }
+      -- table.insert(opts.sources, 1, cody_src)
       local newMapping = {}
       for k, v in pairs(opts.mapping) do
         if k ~= "<CR>" then

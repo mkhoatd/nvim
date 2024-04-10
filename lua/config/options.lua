@@ -10,28 +10,28 @@ vim.o.undofile = true
 
 vim.o.nu = true
 vim.o.relativenumber = true
--- vim.o.tabstop = 4
--- vim.opt.softtabstop = 4
--- vim.opt.shiftwidth = 4
--- vim.opt.expandtab = true
+vim.o.tabstop = 4
+-- vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
+vim.o.expandtab = true
+-- vim.o.noexpandtab = true
 
-vim.opt.smartindent = true
-vim.opt.autoindent = true
+vim.o.smartindent = true
+vim.o.autoindent = true
 
-vim.opt.wrap = false
+vim.o.wrap = false
 
-vim.opt.incsearch = true
+vim.o.incsearch = true
 
-vim.opt.termguicolors = true
+vim.o.termguicolors = true
 
-vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
-vim.opt.colorcolumn = "80"
+vim.o.scrolloff = 8
+vim.o.signcolumn = "yes"
+vim.o.colorcolumn = "80"
 
 -- Case-insensitive searching UNLESS \C or capital in search
 vim.o.ignorecase = true
 vim.o.smartcase = true
-vim.opt.signcolumn = "yes"
 
 -- Keep signcolumn on by default
 vim.wo.signcolumn = "yes"
@@ -56,18 +56,4 @@ vim.g.clipboard = {
 }
 
 vim.lsp.set_log_level("debug")
-
--- let g:clipboard = {
---                'name': 'WslClipboard',
---                'copy': {
---                   '+': 'clip.exe',
---                   '*': 'clip.exe',
---                 },
---                'paste': {
---                   '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
---                   '*': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
---                },
---                'cache_enabled': 0,
---              }
-
 vim.o.encoding = "utf-8"
