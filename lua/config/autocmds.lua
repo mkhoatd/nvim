@@ -28,13 +28,27 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
   end,
 })
 
--- vim.api.nvim_create_augroup("typst", { clear = true })
---
--- vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
---   pattern = "*.typ",
---   group = "typst",
---   callback = function()
---     -- Set the file encoding to UTF-16LE or UTF-16BE depending on your needs
---     vim.bo.fileencoding = "utf-16le"
---   end,
--- })
+vim.api.nvim_create_augroup("typst", { clear = true })
+vim.api.nvim_create_autocmd({
+  "BufNewFile",
+  "BufRead",
+}, {
+  group = "typst",
+  pattern = "*.typ",
+  callback = function()
+    local buf = vim.api.nvim_get_current_buf()
+    vim.api.nvim_buf_set_option(buf, "filetype", "typst")
+  end,
+})
+
+vim.api.nvim_create_augroup("GuessIndent", { clear = true })
+vim.api.nvim_create_autocmd({
+  "BufNewFile",
+  "BufRead",
+}, {
+  group = "GuessIndent",
+  pattern = "*",
+  callback = function()
+    require("guess-indent").guess_indent()
+  end,
+})
