@@ -71,7 +71,6 @@ keymap.set("n", "<leader>5", vim.cmd.UndotreeToggle)
 keymap.set("n", "<C-t>", "<cmd>Lspsaga term_toggle <CR>")
 keymap.set("t", "<C-t>", "<cmd>Lspsaga term_toggle <CR>")
 keymap.set("n", "<C-i>", "<cmd>Lspsaga code_action <CR>")
-keymap.set("n", "<C-k>", "<cmd>Lspsaga hover_doc <CR>")
 keymap.set("n", "K", "<cmd>Lspsaga hover_doc <CR>")
 
 -- Terminal
@@ -90,3 +89,6 @@ end)
 keymap.set("n", "<leader>tup", function()
   vim.lsp.buf.execute_command({ command = "tinymist.pinMain", arguments = { nil } })
 end)
+
+vim.keymap.set("n", "<leader>ce", "<cmd>CommentREPLExecute<CR>")
+vim.keymap.set("n", "<leader>cl", "<cmd>CommentREPLLog<CR>")
