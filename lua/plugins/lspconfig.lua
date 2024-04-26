@@ -27,7 +27,7 @@ return {
     ---@class PluginLspOpts
     opts = {
       inlay_hints = {
-        enabled = true,
+        enabled = false,
       },
       -- Enable this to enable the builtin LSP code lenses on Neovim >= 0.10.0
       -- Be aware that you also will need to properly configure your LSP server to
@@ -57,35 +57,35 @@ return {
           settings = {},
         },
         ---@type lspconfig.options.fsautocomplete
-        fsautocomplete = {
-          settings = {
-            FSharp = {
-              inlayHints = {
-                enabled = true,
-                parameterNames = true,
-                typeAnnotations = true,
-                disableLongTooltip = true,
-              },
-              smartIndent = true,
-              enableAnalyzers = true,
-              infoPanelReplaceHover = true,
-              unusedOpensAnalyzer = true,
-              codeLenses = {
-                signature = {
-                  enabled = true,
-                },
-                references = {
-                  enabled = true,
-                },
-              },
-            },
-            Fsharp = {
-              fsac = {
-                sourceTextImplementationn = true,
-              },
-            },
-          },
-        },
+        -- fsautocomplete = {
+        --   settings = {
+        --     FSharp = {
+        --       inlayHints = {
+        --         enabled = true,
+        --         parameterNames = true,
+        --         typeAnnotations = true,
+        --         disableLongTooltip = true,
+        --       },
+        --       smartIndent = true,
+        --       enableAnalyzers = true,
+        --       infoPanelReplaceHover = true,
+        --       unusedOpensAnalyzer = true,
+        --       codeLenses = {
+        --         signature = {
+        --           enabled = true,
+        --         },
+        --         references = {
+        --           enabled = true,
+        --         },
+        --       },
+        --     },
+        --     Fsharp = {
+        --       fsac = {
+        --         sourceTextImplementationn = true,
+        --       },
+        --     },
+        --   },
+        -- },
         ---@type lspconfig.options.tsserver
         tsserver = {
           settings = {

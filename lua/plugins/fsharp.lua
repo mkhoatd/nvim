@@ -1,6 +1,6 @@
 return {
-  "ionide/Ionide-vim",
-  dependencies = {
-    "neovim/nvim-lspconfig",
-  },
+  -- "ionide/Ionide-vim",
+  -- dependencies = {
+  --   "neovim/nvim-lspconfig",
+  -- },
 }

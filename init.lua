@@ -7,5 +7,3 @@ if vim.g.neovide then
   vim.g.neovide_transparency = 0.9
   vim.g.neovide_window_blurred = true
 end
-
-vim.lsp.set_log_level("trace")
