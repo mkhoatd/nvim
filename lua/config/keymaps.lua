@@ -71,7 +71,7 @@ keymap.set("n", "<leader>5", vim.cmd.UndotreeToggle)
 keymap.set("n", "<C-t>", "<cmd>Lspsaga term_toggle <CR>")
 keymap.set("t", "<C-t>", "<cmd>Lspsaga term_toggle <CR>")
 keymap.set("n", "<C-i>", "<cmd>Lspsaga code_action <CR>")
-keymap.set("n", "K", "<cmd>Lspsaga hover_doc <CR>")
+-- keymap.set("n", "K", "<cmd>Lspsaga hover_doc <CR>")
 
 -- Terminal
 keymap.set("t", "<C-[>", "<C-\\><C-n>", opts)
@@ -92,3 +92,11 @@ end)
 
 vim.keymap.set("n", "<leader>ce", "<cmd>CommentREPLExecute<CR>")
 vim.keymap.set("n", "<leader>cl", "<cmd>CommentREPLLog<CR>")
+
+-- Diagnostics
+keymap.set("n", "<C-j>", function()
+  vim.diagnostic.goto_next()
+end, opts)
+keymap.set("n", "<C-k", function()
+  vim.diagnostic.goto_prev()
+end, opts)

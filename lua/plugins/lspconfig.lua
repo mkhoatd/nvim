@@ -22,7 +22,7 @@ return {
       local builtin = require("telescope.builtin")
       -- change a keymap
       keys[#keys + 1] = { "gI", builtin.lsp_implementations }
-      keys[#keys + 1] = { "K", false }
+      -- keys[#keys + 1] = { "K", false }
     end,
     ---@class PluginLspOpts
     opts = {

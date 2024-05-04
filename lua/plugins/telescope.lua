@@ -52,10 +52,19 @@ return {
       end,
     },
     {
-      ";e",
+      ";ea",
       function()
         local builtin = require("telescope.builtin")
         builtin.diagnostics()
+      end,
+    },
+    {
+      ";e0",
+      function()
+        local builtin = require("telescope.builtin")
+        builtin.diagnostics({
+          bufnr = 0
+        })
       end,
     },
     {
