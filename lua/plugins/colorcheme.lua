@@ -9,6 +9,19 @@ return {
       }
     end,
   },
+  {
+    "nyoom-engineering/oxocarbon.nvim",
+    -- Add in any other configuration;
+    --   event = foo,
+    --   config = bar
+    --   end,
+  },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "oxocarbon",
+    },
+  },
   -- {
   --   "ray-x/starry.nvim",
   --   priority = 1000,

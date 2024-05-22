@@ -63,7 +63,7 @@ return {
       function()
         local builtin = require("telescope.builtin")
         builtin.diagnostics({
-          bufnr = 0
+          bufnr = 0,
         })
       end,
     },
@@ -145,7 +145,7 @@ return {
       file_browser = {
         theme = "dropdown",
         -- disables netrw and use telescope-file-browser in its place
-        hijack_netrw = true,
+        -- hijack_netrw = true,
         mappings = {
           -- your custom insert mode mappings
           ["n"] = {
