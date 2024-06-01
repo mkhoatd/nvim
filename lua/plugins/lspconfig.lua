@@ -28,6 +28,7 @@ return {
       local builtin = require("telescope.builtin")
       -- change a keymap
       keys[#keys + 1] = { "gI", builtin.lsp_implementations }
+      -- keys[#keys + 1] = { "<C-j>",}
       -- keys[#keys + 1] = { "K", false }
     end,
     ---@class PluginLspOpts
@@ -38,9 +39,9 @@ return {
       -- Enable this to enable the builtin LSP code lenses on Neovim >= 0.10.0
       -- Be aware that you also will need to properly configure your LSP server to
       -- provide the code lenses.
-      codelens = {
-        enabled = false,
-      },
+      -- codelens = {
+      --   enabled = true,
+      -- },
       tinymist = {
         single_file_support = true,
         root_dir = function()
@@ -92,45 +93,45 @@ return {
         --     },
         --   },
         -- },
-        ---@type lspconfig.options.tsserver
-        tsserver = {
-          -- init_options = {
-          --   plugins = {
-          --     {
-          --       name = "@vue/typescript-plugin",
-          --       location = vue_language_server_path,
-          --       languages = { "vue" },
-          --     },
-          --   },
-          -- },
-          -- filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
-          settings = {
-            typescript = {
-              inlayHints = {
-                includeInlayParameterNameHints = "all",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayVariableTypeHints = true,
-                includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
-              },
-            },
-            javascript = {
-              inlayHints = {
-                includeInlayParameterNameHints = "all",
-                includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-                includeInlayFunctionParameterTypeHints = true,
-                includeInlayVariableTypeHints = true,
-                includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-                includeInlayPropertyDeclarationTypeHints = true,
-                includeInlayFunctionLikeReturnTypeHints = true,
-                includeInlayEnumMemberValueHints = true,
-              },
-            },
-          },
-        },
+        --        ---@type lspconfig.options.tsserver
+        -- tsserver = {
+        --   init_options = {
+        --     plugins = {
+        --       {
+        --         name = "@vue/typescript-plugin",
+        --         location = vue_language_server_path,
+        --         languages = { "vue" },
+        --       },
+        --     },
+        --   },
+        --   filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+        --   settings = {
+        --     typescript = {
+        --       inlayHints = {
+        --         includeInlayParameterNameHints = "all",
+        --         includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+        --         includeInlayFunctionParameterTypeHints = true,
+        --         includeInlayVariableTypeHints = true,
+        --         includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+        --         includeInlayPropertyDeclarationTypeHints = true,
+        --         includeInlayFunctionLikeReturnTypeHints = true,
+        --         includeInlayEnumMemberValueHints = true,
+        --       },
+        --     },
+        --     javascript = {
+        --       inlayHints = {
+        --         includeInlayParameterNameHints = "all",
+        --         includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+        --         includeInlayFunctionParameterTypeHints = true,
+        --         includeInlayVariableTypeHints = true,
+        --         includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+        --         includeInlayPropertyDeclarationTypeHints = true,
+        --         includeInlayFunctionLikeReturnTypeHints = true,
+        --         includeInlayEnumMemberValueHints = true,
+        --       },
+        --     },
+        --   },
+        -- },
         -- --- @type lspcoonfig.options.gopls
         -- gopls = {
         --   settings = {

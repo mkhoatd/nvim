@@ -95,6 +95,10 @@ return {
       end,
     },
     {
+      "gr",
+      require("telescope.builtin").lsp_references,
+    },
+    {
       "sf",
       function()
         local telescope = require("telescope")
